@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "ed71c060-dbe0-43be-b3c2-47c4e69347e0",
+		"name": "üK 223",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33919262"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById Blogpost NoAuth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById Blogpost iD does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById Blogpost with JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQkxPR1BPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJVU0VSX01PRElGWSJ9LHsiYXV0aG9yaXR5IjoiQkxPR1BPU1RfVVBEQVRFIn0seyJhdXRob3JpdHkiOiJCTE9HUE9TVF9DUkVBVEUifV0sInN1YiI6ImJhODA0Y2I5LWZhMTQtNDJhNS1hZmFmLWJlNDg4NzQyZmM1NCIsImlhdCI6MTc0MDY2NjEyNSwiZXhwIjoxNzQwNzY2MTI1LCJpc3MiOiJ1azIyMyJ9.l5vZZ1Slg6D0p_CIPQGBnBYUdFPThLp5FIFuWG8BXzBEMtusTKsQfwSxCiw5wn_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAll with Pagination and sorting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost?page=0&size=7&sort=title,asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "7"
+						},
+						{
+							"key": "sort",
+							"value": "title,asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create blogpost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQkxPR1BPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJVU0VSX01PRElGWSJ9LHsiYXV0aG9yaXR5IjoiQkxPR1BPU1RfVVBEQVRFIn0seyJhdXRob3JpdHkiOiJCTE9HUE9TVF9DUkVBVEUifV0sInN1YiI6ImJhODA0Y2I5LWZhMTQtNDJhNS1hZmFmLWJlNDg4NzQyZmM1NCIsImlhdCI6MTc0MDY2NjEyNSwiZXhwIjoxNzQwNzY2MTI1LCJpc3MiOiJ1azIyMyJ9.l5vZZ1Slg6D0p_CIPQGBnBYUdFPThLp5FIFuWG8BXzBEMtusTKsQfwSxCiw5wn_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": \"1fd5b937-67fc-4842-b113-9149f95463e5\",\r\n        \"title\": \"The Lost Gabriel\",\r\n        \"description\": \"Ermal is lost in a city.\",\r\n        \"category\": \"FUN\",\r\n        \"author\": {\r\n            \"id\": \"ba804cb9-fa14-42a5-afaf-be488742fc54\",\r\n            \"firstName\": \"James\",\r\n            \"lastName\": \"Bond\",\r\n            \"email\": \"admin@example.com\",\r\n            \"password\": \"$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": \"c6aee32d-8c35-4481-8b3e-a876a39b0c02\",\r\n                    \"name\": \"USER\",\r\n                    \"authorities\": [\r\n                        {\r\n                            \"id\": \"21c942db-a275-43f8-bdd6-d048c21bf5ab\",\r\n                            \"name\": \"USER_DELETE\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": \"d29e709c-0ff1-4f4c-a7ef-09f656c390f1\",\r\n                    \"name\": \"DEFAULT\",\r\n                    \"authorities\": [\r\n                        {\r\n                            \"id\": \"2ebf301e-6c61-4076-98e3-2a38b31daf86\",\r\n                            \"name\": \"DEFAULT\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"id\": \"ab505c92-7280-49fd-a7de-258e618df074\",\r\n                    \"name\": \"ADMIN\",\r\n                    \"authorities\": [\r\n                        {\r\n                            \"id\": \"76d2cbf6-5845-470e-ad5f-2edb9e09a868\",\r\n                            \"name\": \"USER_MODIFY\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/blogpost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE blogpost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQkxPR1BPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJVU0VSX01PRElGWSJ9LHsiYXV0aG9yaXR5IjoiQkxPR1BPU1RfVVBEQVRFIn0seyJhdXRob3JpdHkiOiJCTE9HUE9TVF9DUkVBVEUifV0sInN1YiI6ImJhODA0Y2I5LWZhMTQtNDJhNS1hZmFmLWJlNDg4NzQyZmM1NCIsImlhdCI6MTc0MDY2NjEyNSwiZXhwIjoxNzQwNzY2MTI1LCJpc3MiOiJ1azIyMyJ9.l5vZZ1Slg6D0p_CIPQGBnBYUdFPThLp5FIFuWG8BXzBEMtusTKsQfwSxCiw5wn_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE blogpost id doest not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQkxPR1BPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJVU0VSX01PRElGWSJ9LHsiYXV0aG9yaXR5IjoiQkxPR1BPU1RfVVBEQVRFIn0seyJhdXRob3JpdHkiOiJCTE9HUE9TVF9DUkVBVEUifV0sInN1YiI6ImJhODA0Y2I5LWZhMTQtNDJhNS1hZmFmLWJlNDg4NzQyZmM1NCIsImlhdCI6MTc0MDY2NjEyNSwiZXhwIjoxNzQwNzY2MTI1LCJpc3MiOiJ1azIyMyJ9.l5vZZ1Slg6D0p_CIPQGBnBYUdFPThLp5FIFuWG8BXzBEMtusTKsQfwSxCiw5wn_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE blogpost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQkxPR1BPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJVU0VSX01PRElGWSJ9LHsiYXV0aG9yaXR5IjoiQkxPR1BPU1RfVVBEQVRFIn0seyJhdXRob3JpdHkiOiJCTE9HUE9TVF9DUkVBVEUifV0sInN1YiI6ImJhODA0Y2I5LWZhMTQtNDJhNS1hZmFmLWJlNDg4NzQyZmM1NCIsImlhdCI6MTc0MDY2NjEyNSwiZXhwIjoxNzQwNzY2MTI1LCJpc3MiOiJ1azIyMyJ9.l5vZZ1Slg6D0p_CIPQGBnBYUdFPThLp5FIFuWG8BXzBEMtusTKsQfwSxCiw5wn_s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1fd5b937-67fc-4842-b113-9149f95463e4\",\r\n    \"title\": \"The Big Lost update\",\r\n    \"description\": \"update is lost in a big city.\",\r\n    \"category\": \"FUN\",\r\n    \"author\": {\r\n        \"id\": \"ba804cb9-fa14-42a5-afaf-be488742fc54\",\r\n        \"firstName\": \"James\",\r\n        \"lastName\": \"Bond\",\r\n        \"email\": \"admin@example.com\",\r\n        \"roles\": [\r\n            {\r\n                \"id\": \"ab505c92-7280-49fd-a7de-258e618df074\",\r\n                \"name\": \"ADMIN\",\r\n                \"authorities\": [\r\n                    {\r\n                        \"id\": \"cdab1722-b887-4fef-8e9b-c94c56b4fa32\",\r\n                        \"name\": \"BLOGPOST_CREATE\"\r\n                    },\r\n                    {\r\n                        \"id\": \"76d2cbf6-5845-470e-ad5f-2edb9e09a868\",\r\n                        \"name\": \"USER_MODIFY\"\r\n                    },\r\n                    {\r\n                        \"id\": \"b258a1ad-84b6-44d0-8a63-c3ffa6f944c5\",\r\n                        \"name\": \"BLOGPOST_DELETE\"\r\n                    },\r\n                    {\r\n                        \"id\": \"282db1ed-0ca1-4fd0-898a-95b7291f9784\",\r\n                        \"name\": \"BLOGPOST_UPDATE_ALL\"\r\n                    },\r\n                    {\r\n                        \"id\": \"f103ca40-d033-4f78-b105-a8a0ef7f0c5a\",\r\n                        \"name\": \"BLOGPOST_DELETE_ALL\"\r\n                    },\r\n                    {\r\n                        \"id\": \"d62a5601-8e8f-49e3-a59e-6d8b5db40c41\",\r\n                        \"name\": \"BLOGPOST_UPDATE\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/blogpost/1fd5b937-67fc-4842-b113-9149f95463e4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blogpost",
+						"1fd5b937-67fc-4842-b113-9149f95463e4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
